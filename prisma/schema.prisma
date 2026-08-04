@@ -1,0 +1,148 @@
+// Prisma Schema for CheKoja - Local Search & Smart Business Directory
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id          String     @id @default(uuid())
+  phoneNumber String     @unique
+  fullName    String?
+  role        String     @default("USER") // USER, BUSINESS_OWNER, ADMIN
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  businesses  Business[] @relation("OwnerBusinesses")
+  otps        Otp[]
+
+  @@map("users")
+}
+
+model Otp {
+  id          String   @id @default(uuid())
+  phoneNumber String
+  code        String
+  purpose     String   @default("LOGIN") // LOGIN, REGISTER, CLAIM_BUSINESS
+  expiresAt   DateTime
+  isUsed      Boolean  @default(false)
+  createdAt   DateTime @default(now())
+
+  userId      String?
+  user        User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([phoneNumber, code])
+  @@map("otps")
+}
+
+model Category {
+  id          String             @id @default(uuid())
+  nameFa      String
+  nameEn      String             @unique
+  slug        String             @unique
+  icon        String
+  description String?
+  createdAt   DateTime           @default(now())
+
+  businesses  BusinessCategory[]
+
+  @@map("categories")
+}
+
+model Business {
+  id                    String             @id @default(uuid())
+  name                  String
+  description           String?
+  address               String
+  phone                 String
+  instagram             String?
+  website               String?
+  imageUrl              String?
+  rating                Float              @default(5.0)
+  reviewCount           Int                @default(0)
+  isVerified            Boolean            @default(false)
+
+  // Trust Verification System (2026 Trust Badges)
+  trustPhoneVerified    Boolean            @default(true)
+  trustOwnerVerified    Boolean            @default(false)
+  trustLocationVerified Boolean            @default(true)
+  lastUpdatedInfo       DateTime           @default(now())
+
+  // Market Area / Business Zone relation
+  marketZoneId          String?
+  marketZone            MarketZone?        @relation(fields: [marketZoneId], references: [id], onDelete: SetNull)
+
+  // Location
+  lat                   Float
+  lng                   Float
+
+  ownerId               String?
+  owner                 User?              @relation("OwnerBusinesses", fields: [ownerId], references: [id], onDelete: SetNull)
+
+  createdAt             DateTime           @default(now())
+  updatedAt             DateTime           @updatedAt
+
+  categories            BusinessCategory[]
+  shifts                WorkingHourShift[]
+  keywords              BusinessKeyword[]
+
+  @@index([lat, lng])
+  @@map("businesses")
+}
+
+model BusinessCategory {
+  businessId String
+  categoryId String
+
+  business   Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  category   Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  @@id([businessId, categoryId])
+  @@map("business_categories")
+}
+
+model WorkingHourShift {
+  id         String   @id @default(uuid())
+  businessId String
+  dayOfWeek  Int      // 0 = Saturday, 1 = Sunday, ..., 6 = Friday
+  openTime   String   // Format: "08:00"
+  closeTime  String   // Format: "13:30"
+  shiftLabel String?  // e.g. "شیفت صبح" / "شیفت عصر"
+  isClosed   Boolean  @default(false)
+
+  business   Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+
+  @@index([businessId, dayOfWeek])
+  @@map("working_hour_shifts")
+}
+
+model BusinessKeyword {
+  id         String   @id @default(uuid())
+  businessId String
+  keyword    String
+  weight     Float    @default(1.0)
+
+  business   Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+
+  @@index([keyword])
+  @@index([businessId])
+  @@map("business_keywords")
+}
+
+model MarketZone {
+  id          String     @id @default(uuid())
+  name        String     // e.g. "راسته ابزار و سیستم‌های برودتی سعدی"
+  slug        String     @unique
+  city        String     @default("تهران")
+  specialty   String     // e.g. "تاسیسات و برق صنعتی"
+  description String?
+  lat         Float?
+  lng         Float?
+
+  businesses  Business[]
+
+  @@map("market_zones")
+}

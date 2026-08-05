@@ -186,8 +186,8 @@ export const LocationPickerMap: React.FC<LocationPickerMapProps> = ({
   };
 
   // Handle Address Search on Map (Forward Geocoding)
-  const handleAddressSearch = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleAddressSearch = async (e?: React.SyntheticEvent) => {
+    if (e) e.preventDefault();
     if (!searchQuery.trim()) return;
 
     setIsSearching(true);
@@ -234,23 +234,30 @@ export const LocationPickerMap: React.FC<LocationPickerMapProps> = ({
       {/* Top Map Toolbar: Search & Current Location Button */}
       <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
         {/* Search Input Box */}
-        <form onSubmit={handleAddressSearch} className="relative flex-1">
+        <div className="relative flex-1">
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                e.preventDefault();
+                handleAddressSearch(e);
+              }
+            }}
             placeholder="جستجوی خیابان یا محله (مثلاً: خیابان سعدی تهران)..."
             className="w-full pl-9 pr-9 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-xs font-medium focus:ring-2 focus:ring-emerald-500 outline-none"
           />
           <MagnifyingGlass size={16} className="text-slate-400 absolute right-3 top-2.5" />
           <button
-            type="submit"
+            type="button"
+            onClick={handleAddressSearch}
             disabled={isSearching}
             className="absolute left-1.5 top-1 px-2.5 py-1 bg-emerald-600 text-white rounded-lg text-[11px] font-bold hover:bg-emerald-700 active:scale-95 transition-all flex items-center gap-1"
           >
             {isSearching ? <Spinner size={14} className="animate-spin" /> : <span>جستجو</span>}
           </button>
-        </form>
+        </div>
 
         {/* Current Location Button */}
         <button

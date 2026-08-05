@@ -70,7 +70,7 @@ export const AboutCheKojaModal: React.FC<AboutCheKojaModalProps> = ({ onClose })
             </div>
             <div>
               <h2 className="text-base font-black text-slate-900 dark:text-white flex items-center gap-1.5">
-                <span>درباره چیکجا</span>
+                <span>درباره چی کجا</span>
                 <Sparkle size={14} weight="fill" className="text-amber-400" />
               </h2>
               <p className="text-[11px] text-slate-500 dark:text-slate-400 font-medium">
@@ -94,10 +94,10 @@ export const AboutCheKojaModal: React.FC<AboutCheKojaModalProps> = ({ onClose })
           <section className="bg-slate-50 dark:bg-slate-800/60 p-5 rounded-3xl border border-slate-200/70 dark:border-slate-800 space-y-2">
             <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-black text-sm">
               <Info size={20} weight="regular" />
-              <h3>چیکجا چیست؟</h3>
+              <h3>چی کجا چیست؟</h3>
             </div>
             <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-medium">
-              چیکجا یک پروژه مستقل و رایگان است که با هدف کمک به دیده شدن کسب‌وکارهای محلی و آسان‌تر شدن پیدا کردن خدمات و کالاهای مورد نیاز مردم ساخته شده است.
+              چی کجا یک پروژه مستقل و رایگان است که با هدف کمک به دیده شدن کسب‌وکارهای محلی و آسان‌تر شدن پیدا کردن خدمات و کالاهای مورد نیاز مردم ساخته شده است.
             </p>
             <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-medium">
               هدف این پروژه ایجاد ارتباط مستقیم میان مردم و صاحبان کسب‌وکار است؛ بدون پیچیدگی‌های غیرضروری و با تمرکز بر سرعت، سادگی و دسترسی آسان.
@@ -112,16 +112,16 @@ export const AboutCheKojaModal: React.FC<AboutCheKojaModalProps> = ({ onClose })
           <section className="bg-slate-50 dark:bg-slate-800/60 p-5 rounded-3xl border border-slate-200/70 dark:border-slate-800 space-y-2">
             <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-black text-sm">
               <Sparkle size={20} weight="regular" />
-              <h3>چرا چیکجا ساخته شد؟</h3>
+              <h3>چرا چی کجا ساخته شد؟</h3>
             </div>
             <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-medium">
-              ایده اصلی چیکجا از یک نیاز واقعی شکل گرفت.
+              ایده اصلی چی کجا از یک نیاز واقعی شکل گرفت.
             </p>
             <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-medium">
               بسیاری از کسب‌وکارهای کوچک دیده نمی‌شوند و کاربران نیز برای پیدا کردن خدمات مورد نیاز خود زمان زیادی صرف می‌کنند.
             </p>
             <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-medium">
-              چیکجا تلاش می‌کند این فاصله را کمتر کند و پیدا کردن کسب‌وکارهای محلی را سریع‌تر و ساده‌تر کند.
+              چی کجا تلاش می‌کند این فاصله را کمتر کند و پیدا کردن کسب‌وکارهای محلی را سریع‌تر و ساده‌تر کند.
             </p>
           </section>
 
@@ -135,7 +135,7 @@ export const AboutCheKojaModal: React.FC<AboutCheKojaModalProps> = ({ onClose })
               <h3 className="text-white text-base">رایگان خواهد ماند</h3>
             </div>
             <p className="relative z-10 text-xs sm:text-sm text-emerald-50 leading-relaxed font-medium">
-              استفاده از چیکجا برای کاربران همیشه رایگان خواهد بود.
+              استفاده از چی کجا برای کاربران همیشه رایگان خواهد بود.
             </p>
             <p className="relative z-10 text-xs sm:text-sm text-emerald-100/90 leading-relaxed font-medium">
               اگر در آینده امکانات جدیدی اضافه شود، تلاش ما این است که هسته اصلی برنامه همچنان رایگان باقی بماند.
@@ -160,7 +160,7 @@ export const AboutCheKojaModal: React.FC<AboutCheKojaModalProps> = ({ onClose })
             </div>
 
             <p className="text-xs text-slate-300 leading-relaxed font-medium">
-              اگر چیکجا برای شما مفید بوده و دوست دارید در توسعه آن سهیم باشید، می‌توانید به صورت کاملاً اختیاری از پروژه حمایت کنید. هیچ قابلیتی از برنامه وابسته به پرداخت نخواهد بود.
+              اگر چی کجا برای شما مفید بوده و دوست دارید در توسعه آن سهیم باشید، می‌توانید به صورت کاملاً اختیاری از پروژه حمایت کنید. هیچ قابلیتی از برنامه وابسته به پرداخت نخواهد بود.
             </p>
 
             {/* Account & Card Details Grid */}
@@ -330,7 +330,7 @@ export const AboutCheKojaModal: React.FC<AboutCheKojaModalProps> = ({ onClose })
 
         {/* Footer */}
         <div className="p-4 bg-slate-50 dark:bg-slate-800/60 border-t border-slate-200 dark:border-slate-800 text-center text-xs text-slate-500 dark:text-slate-400">
-          سامانه مستقل جستجوی محلی اصناف و خدمات «چیکجا» — با افتخار رایگان برای تمام مردم ایران
+          سامانه مستقل جستجوی محلی اصناف و خدمات «چی کجا» — با افتخار رایگان برای تمام مردم ایران
         </div>
       </div>
     </div>

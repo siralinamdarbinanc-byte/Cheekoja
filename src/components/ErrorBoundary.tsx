@@ -33,9 +33,9 @@ export class ErrorBoundary extends React.Component<Props, State> {
           <div className="w-20 h-20 bg-rose-500/10 text-rose-500 rounded-3xl flex items-center justify-center mb-6 border border-rose-500/20 shadow-xl">
             <AlertTriangle className="w-10 h-10" />
           </div>
-          <h1 className="text-2xl font-black mb-2">مشکلی در اجرای برنامه چیکجا رخ داده است</h1>
+          <h1 className="text-2xl font-black mb-2">مشکلی در اجرای برنامه چی کجا رخ داده است</h1>
           <p className="text-slate-400 text-sm max-w-md mb-6 leading-relaxed">
-            تیم فنی چیکجا از این مسئله مطلع شده است. لطفاً صفحه را بازنشانی کنید.
+            تیم فنی چی کجا از این مسئله مطلع شده است. لطفاً صفحه را بازنشانی کنید.
           </p>
           <button
             onClick={() => window.location.reload()}

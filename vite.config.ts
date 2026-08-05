@@ -13,8 +13,8 @@ export default defineConfig(() => {
         registerType: 'autoUpdate',
         includeAssets: ['favicon.svg', 'pwa-192x192.png', 'pwa-512x512.png', 'apple-touch-icon.png', 'maskable-icon-512x512.png'],
         manifest: {
-          name: 'CheKoja | چیکجا - موتور جستجوی محلی کالا و خدمات',
-          short_name: 'چیکجا',
+          name: 'CheKoja | چی کجا - موتور جستجوی محلی کالا و خدمات',
+          short_name: 'چی کجا',
           description: 'موتور هوشمند جستجوی محلی کالا، خدمات، راسته‌های بازار و کسب‌وکارهای ایران',
           start_url: './',
           scope: './',

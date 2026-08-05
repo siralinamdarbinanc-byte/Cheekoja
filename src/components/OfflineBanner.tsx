@@ -44,7 +44,7 @@ export const OfflineBanner: React.FC = () => {
       {isOffline && (
         <div className="bg-amber-500 text-slate-950 px-4 py-2 text-xs font-bold flex items-center justify-center gap-2 shadow-md">
           <WifiOff className="w-4 h-4" />
-          <span>اتصال اینترنت قطع است. حالت آفلاین و حافظه پنهان چیکجا فعال است.</span>
+          <span>اتصال اینترنت قطع است. حالت آفلاین و حافظه پنهان چی کجا فعال است.</span>
         </div>
       )}
 
@@ -53,7 +53,7 @@ export const OfflineBanner: React.FC = () => {
         <div className="bg-emerald-600 text-white px-4 py-2.5 text-xs font-bold flex items-center justify-between shadow-lg">
           <div className="flex items-center gap-2">
             <Download className="w-4 h-4 animate-bounce" />
-            <span>اپلیکیشن چیکجا را روی گوشی خود نصب کنید (سریع‌تر و بدون فیلتر)</span>
+            <span>اپلیکیشن چی کجا را روی گوشی خود نصب کنید (سریع‌تر و بدون فیلتر)</span>
           </div>
           <div className="flex items-center gap-2">
             <button

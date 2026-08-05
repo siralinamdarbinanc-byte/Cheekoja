@@ -158,7 +158,7 @@ export default function App() {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
             </span>
-            <span className="font-mono text-emerald-400 font-bold">پایگاه داده زنده چیکجا</span>
+            <span className="font-mono text-emerald-400 font-bold">پایگاه داده زنده چی کجا</span>
             <span className="text-slate-600 hidden sm:inline">|</span>
             <span className="text-slate-400 hidden sm:inline flex items-center gap-1">
               <HardDrives size={14} weight="regular" className="text-cyan-400 inline" /> سرویس جستجوی زنده اصناف
@@ -169,7 +169,7 @@ export default function App() {
               onClick={() => setIsAboutModalOpen(true)}
               className="text-amber-400 hover:underline text-[11px] font-bold"
             >
-              درباره چیکجا
+              درباره چی کجا
             </button>
             <span className="text-slate-700">|</span>
             <a
@@ -218,7 +218,7 @@ export default function App() {
           <div className="flex items-center justify-between bg-white dark:bg-slate-800/80 px-4 py-3 rounded-2xl border border-slate-200/60 dark:border-slate-800 shadow-xs">
             <div className="text-xs font-bold text-slate-700 dark:text-slate-300 flex items-center gap-1.5">
               <Storefront size={18} weight="regular" className="text-emerald-500" />
-              <span>{rankedBusinesses.length} کاسبی نزدیک شما در چیکجا یافت شد</span>
+              <span>{rankedBusinesses.length} کاسبی نزدیک شما در چی کجا یافت شد</span>
             </div>
             {filters.openOnly && (
               <span className="text-[11px] font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-2.5 py-0.5 rounded-full border border-emerald-300/60">
@@ -241,7 +241,7 @@ export default function App() {
                 <MagnifyingGlass size={32} weight="regular" />
               </div>
               <div>
-                <h3 className="font-bold text-base text-slate-900 dark:text-white">نتیجه‌ای در چیکجا یافت نشد</h3>
+                <h3 className="font-bold text-base text-slate-900 dark:text-white">نتیجه‌ای در چی کجا یافت نشد</h3>
                 <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 max-w-sm">
                   هیچ کاسبی متناسب با عبارت "{filters.query}" یا شعاع {filters.maxDistanceKm} کیلومتر پیدا نشد.
                 </p>
@@ -291,7 +291,7 @@ export default function App() {
               fallback={
                 <div className="w-full h-full flex flex-col items-center justify-center bg-slate-100 dark:bg-slate-800 text-slate-400 animate-pulse">
                   <Storefront size={36} weight="regular" className="mb-2" />
-                  <span className="text-xs font-bold">در حال بارگذاری نقشه تعاملی چیکجا...</span>
+                  <span className="text-xs font-bold">در حال بارگذاری نقشه تعاملی چی کجا...</span>
                 </div>
               }
             >

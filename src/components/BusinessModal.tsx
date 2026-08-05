@@ -46,7 +46,7 @@ export const BusinessModal: React.FC<BusinessModalProps> = ({
     if (navigator.share) {
       navigator.share({
         title: business.name,
-        text: `${business.name} - ${business.activityTitle} در چیکجا`,
+        text: `${business.name} - ${business.activityTitle} در چی کجا`,
         url: window.location.href,
       }).catch(() => {});
     } else {
@@ -249,7 +249,7 @@ export const BusinessModal: React.FC<BusinessModalProps> = ({
 
               <div className="p-3 bg-emerald-50 dark:bg-emerald-950/40 rounded-2xl border border-emerald-200 dark:border-emerald-800/60 text-xs text-emerald-900 dark:text-emerald-300 flex items-center gap-2">
                 <StatusIcon statusType={isOpen ? 'open' : 'closed'} size={18} />
-                <span>{computedStatus.detailText || 'بر اساس ساعات کاری ثبت شده در سامانه چیکجا'}</span>
+                <span>{computedStatus.detailText || 'بر اساس ساعات کاری ثبت شده در سامانه چی کجا'}</span>
               </div>
             </div>
           )}
@@ -261,7 +261,7 @@ export const BusinessModal: React.FC<BusinessModalProps> = ({
                 <div>
                   <strong className="font-bold text-slate-900 dark:text-white block">تایید شماره تلفن ثابت و همراه</strong>
                   <span className="text-slate-500 dark:text-slate-400 text-[11px] mt-0.5 block">
-                    شماره تماس مستقیم توسط کارشناسان چیکجا استعلام و تایید گردیده است.
+                    شماره تماس مستقیم توسط کارشناسان چی کجا استعلام و تایید گردیده است.
                   </span>
                 </div>
               </div>
@@ -281,7 +281,7 @@ export const BusinessModal: React.FC<BusinessModalProps> = ({
                 <div>
                   <strong className="font-bold text-slate-900 dark:text-white block">موقعیت مکانی ثبت شده</strong>
                   <span className="text-slate-500 dark:text-slate-400 text-[11px] mt-0.5 block">
-                    مختصات جغرافیایی مغازه در نقشه چیکجا جانمایی و پایش گردیده است.
+                    مختصات جغرافیایی مغازه در نقشه چی کجا جانمایی و پایش گردیده است.
                   </span>
                 </div>
               </div>

@@ -1,5 +1,5 @@
 {
-  "name": "چیکجا | CheKoja",
+  "name": "چی کجا | CheKoja",
   "description": "موتور جستجوی محلی هوشمند و سریع برای پیدا کردن کالا، خدمات و کسب‌وکارها در ایران",
   "requestFramePermissions": ["geolocation"],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]

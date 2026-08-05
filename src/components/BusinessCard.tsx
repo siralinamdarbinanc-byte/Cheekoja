@@ -36,7 +36,7 @@ export const BusinessCard: React.FC<BusinessCardProps> = ({
       navigator
         .share({
           title: business.name,
-          text: `${business.name} - ${business.activityTitle} در چیکجا`,
+          text: `${business.name} - ${business.activityTitle} در چی کجا`,
           url: window.location.href,
         })
         .catch(() => {});
@@ -103,7 +103,7 @@ export const BusinessCard: React.FC<BusinessCardProps> = ({
           {business.trustOwnerVerified && (
             <div
               className="absolute bottom-1 right-1 bg-emerald-500 text-white p-1 rounded-lg shadow-sm"
-              title="مالک تایید شده چیکجا"
+              title="مالک تایید شده چی کجا"
             >
               <SealCheck size={14} weight="bold" />
             </div>

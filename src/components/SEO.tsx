@@ -10,18 +10,18 @@ interface SEOProps {
 export const SEO: React.FC<SEOProps> = ({ business, searchQuery, category }) => {
   useEffect(() => {
     // 1. Dynamic Title
-    let pageTitle = 'چیکجا | موتور جستجوی محلی کالا، خدمات و کسب‌وکارها';
+    let pageTitle = 'چی کجا | موتور جستجوی محلی کالا، خدمات و کسب‌وکارها';
     let pageDesc = 'موتور هوشمند جستجوی محلی کالا، خدمات، راسته‌های بازار و کسب‌وکارهای ایران با ساعات کاری و موقعیت زنده';
 
     if (business) {
-      pageTitle = `چیکجا | ${business.name} (${business.category}) - تلفن و آدرس`;
-      pageDesc = `${business.name} در ${business.address}. ${business.shortDescription || 'مشاهده ساعات کاری، تماس و مسیریابی زنده در چیکجا.'}`;
+      pageTitle = `چی کجا | ${business.name} (${business.category}) - تلفن و آدرس`;
+      pageDesc = `${business.name} در ${business.address}. ${business.shortDescription || 'مشاهده ساعات کاری، تماس و مسیریابی زنده در چی کجا.'}`;
     } else if (searchQuery) {
-      pageTitle = `چیکجا | جستجوی ${searchQuery} در نزدیک شما`;
-      pageDesc = `نتایج جستجو برای ${searchQuery} - مشاغل، فروشگاه‌ها و خدمات نزدیک شما در چیکجا.`;
+      pageTitle = `چی کجا | جستجوی ${searchQuery} در نزدیک شما`;
+      pageDesc = `نتایج جستجو برای ${searchQuery} - مشاغل، فروشگاه‌ها و خدمات نزدیک شما در چی کجا.`;
     } else if (category) {
-      pageTitle = `چیکجا | اصناف و کسب‌وکارهای دسته ${category}`;
-      pageDesc = `لیست کامل کسب‌وکارها و خدمات ${category} با آدرس، شماره تماس و وضعیت فعالیت در چیکجا.`;
+      pageTitle = `چی کجا | اصناف و کسب‌وکارهای دسته ${category}`;
+      pageDesc = `لیست کامل کسب‌وکارها و خدمات ${category} با آدرس، شماره تماس و وضعیت فعالیت در چی کجا.`;
     }
 
     document.title = pageTitle;

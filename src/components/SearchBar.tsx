@@ -170,7 +170,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
             <div className="absolute top-full left-0 right-0 mt-2 bg-white dark:bg-slate-800 rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-700 py-2 z-50 overflow-hidden animate-fade-in">
               <div className="px-3 py-1.5 text-[11px] font-bold text-slate-400 dark:text-slate-500 flex items-center gap-1 border-b border-slate-100 dark:border-slate-700/60 mb-1">
                 <Sparkle size={14} weight="regular" className="text-amber-500" />
-                <span>پیشنهادهای هوشمند چیکجا:</span>
+                <span>پیشنهادهای هوشمند چی کجا:</span>
               </div>
               {suggestions.map((sug, idx) => (
                 <button

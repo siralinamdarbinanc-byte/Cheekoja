@@ -46,7 +46,7 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onFinish }) => {
 
         <div>
           <h1 className="text-3xl font-black text-white tracking-tight flex items-center justify-center gap-2">
-            <span>چیکجا</span>
+            <span>چی کجا</span>
           </h1>
           <p className="text-xs text-slate-400 font-medium mt-1">
             موتور هوشمند جستجوی محلی کالا و خدمات

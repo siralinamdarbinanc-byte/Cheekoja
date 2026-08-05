@@ -99,7 +99,7 @@ export const BusinessOwnerPanel: React.FC<BusinessOwnerPanelProps> = ({
         businessId: createdBiz.id,
         businessName: createdBiz.name,
         title: 'کاسبی جدید ثبت شد',
-        message: `کسب‌وکار "${createdBiz.name}" با موفقیت در چیکجا قرار گرفت.`,
+        message: `کسب‌وکار "${createdBiz.name}" با موفقیت در چی کجا قرار گرفت.`,
         type: 'status_reminder',
       });
     }

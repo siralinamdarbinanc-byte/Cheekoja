@@ -16,8 +16,8 @@ export default defineConfig(() => {
           name: 'CheKoja | چیکجا - موتور جستجوی محلی کالا و خدمات',
           short_name: 'چیکجا',
           description: 'موتور هوشمند جستجوی محلی کالا، خدمات، راسته‌های بازار و کسب‌وکارهای ایران',
-          start_url: '/',
-          scope: '/',
+          start_url: './',
+          scope: './',
           display: 'standalone',
           orientation: 'portrait',
           theme_color: '#0284c7',
@@ -27,19 +27,19 @@ export default defineConfig(() => {
           categories: ['shopping', 'business', 'navigation', 'utilities'],
           icons: [
             {
-              src: '/pwa-192x192.png',
+              src: 'pwa-192x192.png',
               sizes: '192x192',
               type: 'image/png',
               purpose: 'any',
             },
             {
-              src: '/pwa-512x512.png',
+              src: 'pwa-512x512.png',
               sizes: '512x512',
               type: 'image/png',
               purpose: 'any',
             },
             {
-              src: '/maskable-icon-512x512.png',
+              src: 'maskable-icon-512x512.png',
               sizes: '512x512',
               type: 'image/png',
               purpose: 'maskable',

@@ -12,6 +12,7 @@ import { BottomNav } from './components/BottomNav';
 import { SEO } from './components/SEO';
 import { SplashScreen } from './components/SplashScreen';
 import { OfflineBanner } from './components/OfflineBanner';
+import { useTheme } from './components/ThemeProvider';
 
 import { INITIAL_BUSINESSES } from './data/mockBusinesses';
 import { Business, SearchFilters, UserLocation, SmartNotification } from './types';
@@ -23,6 +24,9 @@ import { Storefront, MagnifyingGlass, HardDrives } from '@phosphor-icons/react';
 const MapView = lazy(() => import('./components/MapView').then((mod) => ({ default: mod.MapView })));
 
 export default function App() {
+  // Theme State from ThemeProvider
+  const { darkMode, setDarkMode } = useTheme();
+
   // 1. App Core State
   const [businesses, setBusinesses] = useState<Business[]>(INITIAL_BUSINESSES);
   const [selectedBusiness, setSelectedBusiness] = useState<Business | null>(null);
@@ -35,11 +39,6 @@ export default function App() {
   const [isDesignDocOpen, setIsDesignDocOpen] = useState<boolean>(false);
   const [isAboutModalOpen, setIsAboutModalOpen] = useState<boolean>(false);
   const [isLocating, setIsLocating] = useState<boolean>(false);
-
-  // Dark Mode State
-  const [darkMode, setDarkMode] = useState<boolean>(() => {
-    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-  });
 
   // Notifications State
   const [notifications, setNotifications] = useState<SmartNotification[]>([]);
@@ -61,15 +60,6 @@ export default function App() {
     city: 'تهران',
     address: 'تهران (مرکز)',
   });
-
-  // Apply dark mode class to HTML element
-  useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  }, [darkMode]);
 
   // Load initial data from REST Backend API
   useEffect(() => {
@@ -161,7 +151,7 @@ export default function App() {
       />
 
       {/* 2. Live API & System Status Banner */}
-      <div className="bg-slate-900 border-b border-slate-800 text-xs text-slate-300 py-1.5 px-4">
+      <div className="bg-slate-100 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 text-xs text-slate-700 dark:text-slate-300 py-1.5 px-4 transition-colors">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-2">
             <span className="flex h-2 w-2 relative">

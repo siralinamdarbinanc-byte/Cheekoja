@@ -170,12 +170,55 @@ export const BusinessModal: React.FC<BusinessModalProps> = ({
                 </p>
               </div>
 
-              {/* Address */}
-              <div className="p-3 bg-slate-100 dark:bg-slate-800/80 rounded-2xl flex items-start gap-2.5">
-                <MapPin size={20} weight="regular" className="text-emerald-500 shrink-0 mt-0.5" />
-                <div className="text-xs">
-                  <strong className="font-bold text-slate-900 dark:text-white block">آدرس دقیق:</strong>
-                  <span className="text-slate-600 dark:text-slate-300 mt-0.5 block">{business.address}</span>
+              {/* Address & Navigation */}
+              <div className="p-3 bg-slate-100 dark:bg-slate-800/80 rounded-2xl flex flex-col gap-2.5">
+                <div className="flex items-start justify-between gap-2">
+                  <div className="flex items-start gap-2.5 text-xs">
+                    <MapPin size={20} weight="regular" className="text-emerald-500 shrink-0 mt-0.5" />
+                    <div>
+                      <strong className="font-bold text-slate-900 dark:text-white block">آدرس دقیق:</strong>
+                      <span className="text-slate-600 dark:text-slate-300 mt-0.5 block">{business.address}</span>
+                    </div>
+                  </div>
+                  {onDirections && (
+                    <button
+                      type="button"
+                      onClick={() => onDirections(business)}
+                      className="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-bold text-xs shrink-0 transition-all active:scale-95 flex items-center gap-1 shadow-xs"
+                    >
+                      <NavigationArrow size={14} weight="regular" />
+                      <span>نمایش روی نقشه</span>
+                    </button>
+                  )}
+                </div>
+
+                {/* Navigation Quick Links */}
+                <div className="border-t border-slate-200/80 dark:border-slate-700/80 pt-2 flex items-center gap-2 overflow-x-auto no-scrollbar text-[11px] font-bold">
+                  <span className="text-slate-400 shrink-0">مسیریابی با:</span>
+                  <a
+                    href={`https://neshan.org/maps/@${business.lat},${business.lng},16z`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-2.5 py-1 bg-white dark:bg-slate-700 hover:bg-emerald-50 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 rounded-lg border border-slate-200 dark:border-slate-600 shrink-0 transition-colors"
+                  >
+                    نشان 🗺️
+                  </a>
+                  <a
+                    href={`https://balad.ir/location?lat=${business.lat}&lng=${business.lng}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-2.5 py-1 bg-white dark:bg-slate-700 hover:bg-emerald-50 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 rounded-lg border border-slate-200 dark:border-slate-600 shrink-0 transition-colors"
+                  >
+                    بلد 📍
+                  </a>
+                  <a
+                    href={`https://www.google.com/maps/dir/?api=1&destination=${business.lat},${business.lng}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-2.5 py-1 bg-white dark:bg-slate-700 hover:bg-emerald-50 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 rounded-lg border border-slate-200 dark:border-slate-600 shrink-0 transition-colors"
+                  >
+                    Google Maps 🌐
+                  </a>
                 </div>
               </div>
 

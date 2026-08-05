@@ -30,12 +30,16 @@ export function toPersianDigits(n: number | string): string {
 }
 
 /**
- * Formats distance in meters to readable human Persian text (e.g. "۴۵۰ متر", "۲.۳ کیلومتر")
+ * Formats distance in meters to readable human Persian text (e.g. "۳۵۰ متر", "۱٫۲ کیلومتر", "۸ کیلومتر")
  */
 export function formatDistanceText(meters: number): string {
   if (meters < 1000) {
     return `${toPersianDigits(meters)} متر`;
   }
-  const km = (meters / 1000).toFixed(1);
-  return `${toPersianDigits(km)} کیلومتر`;
+  const km = meters / 1000;
+  if (km % 1 === 0 || Math.round(km * 10) % 10 === 0) {
+    return `${toPersianDigits(Math.round(km))} کیلومتر`;
+  }
+  const formatted = km.toFixed(1).replace('.', '٫');
+  return `${toPersianDigits(formatted)} کیلومتر`;
 }

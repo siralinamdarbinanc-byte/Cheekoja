@@ -106,12 +106,36 @@ export default function App() {
 
     setIsLocating(true);
     navigator.geolocation.getCurrentPosition(
-      (pos) => {
+      async (pos) => {
+        const userLat = pos.coords.latitude;
+        const userLng = pos.coords.longitude;
+        let formattedAddr = 'موقعیت زنده شما';
+        let userCity = 'تهران';
+
+        try {
+          const res = await fetch(
+            `https://nominatim.openstreetmap.org/reverse?format=json&lat=${userLat}&lon=${userLng}&accept-language=fa`
+          );
+          if (res.ok) {
+            const data = await res.json();
+            if (data && data.address) {
+              userCity = data.address.city || data.address.town || data.address.village || 'تهران';
+              const neighborhood =
+                data.address.neighbourhood || data.address.suburb || data.address.road || '';
+              formattedAddr = neighborhood
+                ? `${userCity}، ${neighborhood}`
+                : data.display_name?.slice(0, 35) || userCity;
+            }
+          }
+        } catch (e) {
+          console.warn('Reverse geocode error:', e);
+        }
+
         setUserLocation({
-          lat: pos.coords.latitude,
-          lng: pos.coords.longitude,
-          city: 'تهران',
-          address: 'موقعیت زنده شما',
+          lat: userLat,
+          lng: userLng,
+          city: userCity,
+          address: formattedAddr,
         });
         setIsLocating(false);
       },
@@ -120,7 +144,7 @@ export default function App() {
         setIsLocating(false);
         alert('امکان دریافت دقیق موقعیت مکانی وجود نداشت. موقعیت پیش‌فرض تهران تنظیم است.');
       },
-      { timeout: 8000 }
+      { timeout: 8000, enableHighAccuracy: true }
     );
   };
 

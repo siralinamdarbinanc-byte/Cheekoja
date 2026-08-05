@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import L from 'leaflet';
 import { Compass } from '@phosphor-icons/react';
 import { RankedBusiness } from '../utils/ranking';
-import { UserLocation } from '../types';
+import { UserLocation, Business } from '../types';
 import { formatDistanceText } from '../utils/distance';
 
 interface MapViewProps {
@@ -10,6 +10,7 @@ interface MapViewProps {
   userLocation: UserLocation;
   onSelectBusiness: (business: RankedBusiness) => void;
   onRequestLocation: () => void;
+  selectedBusiness?: Business | null;
 }
 
 export const MapView: React.FC<MapViewProps> = ({
@@ -17,6 +18,7 @@ export const MapView: React.FC<MapViewProps> = ({
   userLocation,
   onSelectBusiness,
   onRequestLocation,
+  selectedBusiness,
 }) => {
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const mapInstanceRef = useRef<L.Map | null>(null);
@@ -127,7 +129,9 @@ export const MapView: React.FC<MapViewProps> = ({
     });
 
     // Fit bounds if businesses exist
-    if (businesses.length > 0) {
+    if (selectedBusiness) {
+      map.flyTo([selectedBusiness.lat, selectedBusiness.lng], 16, { duration: 1.2 });
+    } else if (businesses.length > 0) {
       const groupBounds = L.featureGroup([
         L.marker([userLocation.lat, userLocation.lng]),
         ...businesses.map((b) => L.marker([b.business.lat, b.business.lng])),
@@ -136,7 +140,7 @@ export const MapView: React.FC<MapViewProps> = ({
     } else {
       map.setView([userLocation.lat, userLocation.lng], 13);
     }
-  }, [businesses, userLocation]);
+  }, [businesses, userLocation, selectedBusiness]);
 
   const handleRecenter = () => {
     if (mapInstanceRef.current) {

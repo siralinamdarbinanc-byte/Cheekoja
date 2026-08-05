@@ -14,6 +14,8 @@ import {
 import { Business, SmartNotification } from '../types';
 import { IRAN_MARKET_ZONES } from '../data/marketZones';
 import { CATEGORIES } from '../data/categories';
+import { createBusinessApi } from '../api/client';
+import { LocationPickerMap } from './LocationPickerMap';
 
 interface BusinessOwnerPanelProps {
   businesses?: Business[];
@@ -58,20 +60,32 @@ export const BusinessOwnerPanel: React.FC<BusinessOwnerPanelProps> = ({
     }
   };
 
-  const handleFinalSubmit = (e: React.FormEvent) => {
+  const handleFinalSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!name.trim() || !phone.trim()) {
       alert('لطفاً نام کسب‌وکار و شماره تماس را وارد کنید.');
       return;
     }
 
-    const createdBiz: Business = {
-      id: `biz-${Date.now()}`,
+    const payload = {
       name: name.trim(),
+      phone: phone.trim(),
+      address: address.trim() || 'تهران',
+      category: category,
+      subCategory: category,
+      marketZoneName: marketZoneName || undefined,
+      lat: lat,
+      lng: lng,
+      description: shortDescription.trim() || `کسب‌وکار فعال در زمینه ${category}`,
+    };
+
+    let createdBiz: Business = {
+      id: `biz-${Date.now()}`,
+      name: payload.name,
       activityTitle: `ارائه خدمات و قطعات در صنف ${category}`,
       category: category,
       subCategory: category,
-      address: address.trim() || 'تهران',
+      address: payload.address,
       city: 'تهران',
       marketZoneName: marketZoneName || undefined,
       trustPhoneVerified: true,
@@ -80,16 +94,30 @@ export const BusinessOwnerPanel: React.FC<BusinessOwnerPanelProps> = ({
       lastUpdatedInfo: 'هم‌اکنون',
       lat: lat,
       lng: lng,
-      phone: phone.trim(),
+      phone: payload.phone,
       workingHours: { open: openTime, close: closeTime },
       workingDays: ['شنبه', 'یکشنبه', 'دوشنبه', 'سه‌شنبه', 'چهارشنبه', 'پنج‌شنبه'],
-      shortDescription: shortDescription.trim() || `کسب‌وکار فعال در زمینه ${category}`,
+      shortDescription: payload.description,
       images: ['https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80'],
       tags: [category, marketZoneName, 'کاسبی محلی'].filter(Boolean) as string[],
       completenessScore: 90,
       rating: 5.0,
       createdAt: new Date().toISOString(),
     };
+
+    try {
+      const apiRes = await createBusinessApi(payload);
+      if (apiRes.success && apiRes.data) {
+        createdBiz = {
+          ...createdBiz,
+          id: apiRes.data.id || createdBiz.id,
+          lat: apiRes.data.lat ?? lat,
+          lng: apiRes.data.lng ?? lng,
+        };
+      }
+    } catch (err) {
+      console.warn('Backend business creation fallback:', err);
+    }
 
     if (onAddBusiness) onAddBusiness(createdBiz);
     if (onBusinessAdded) onBusinessAdded(createdBiz);
@@ -268,30 +296,34 @@ export const BusinessOwnerPanel: React.FC<BusinessOwnerPanelProps> = ({
                     <span>مرحله دوم: تعیین جانمایی روی نقشه</span>
                   </h3>
 
+                  <LocationPickerMap
+                    lat={lat}
+                    lng={lng}
+                    onLocationChange={(newLat, newLng, details) => {
+                      setLat(newLat);
+                      setLng(newLng);
+                      if (details?.address) {
+                        setAddress(details.address);
+                      }
+                    }}
+                  />
+
                   <div className="p-3 bg-slate-50 dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 space-y-2">
-                    <div className="flex items-center justify-between">
-                      <span className="text-xs font-bold text-slate-700 dark:text-slate-300">آدرس متنی:</span>
-                      <button
-                        type="button"
-                        onClick={handleDetectCurrentLocation}
-                        className="text-[11px] text-emerald-600 dark:text-emerald-400 font-bold hover:underline flex items-center gap-1"
-                      >
-                        <MapPin size={14} weight="regular" />
-                        ثبت از روی لوکیشن کنونی من
-                      </button>
-                    </div>
+                    <label className="block text-xs font-bold text-slate-700 dark:text-slate-300">
+                      آدرس متنی (استخراج‌شده از نقشه - قابل ویرایش):
+                    </label>
                     <input
                       type="text"
                       value={address}
                       onChange={(e) => setAddress(e.target.value)}
                       placeholder="تهران، خیابان..."
-                      className="w-full px-3 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-xs font-medium"
+                      className="w-full px-3.5 py-2.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-xs font-medium focus:ring-2 focus:ring-emerald-500 outline-none"
                     />
                   </div>
 
                   <div className="bg-emerald-50 dark:bg-emerald-950/40 p-3 rounded-2xl border border-emerald-200 dark:border-emerald-800 flex items-center gap-2 text-xs text-emerald-800 dark:text-emerald-300 font-medium">
                     <ShieldCheck size={20} weight="regular" className="text-emerald-600 shrink-0" />
-                    <span>موقعیت مکانی شما با مختصات ({lat.toFixed(3)}, {lng.toFixed(3)}) تایید می‌شود.</span>
+                    <span>موقعیت مکانی شما با مختصات ({lat.toFixed(4)}, {lng.toFixed(4)}) ثبت خواهد شد.</span>
                   </div>
 
                   <div className="pt-2 flex justify-between">
